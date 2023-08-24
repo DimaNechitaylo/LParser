@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Sport {
+public class Regions {
     private Long id;
     private String name;
-    private List<Regions> regions;
+    private List<League> leagues;
 }
