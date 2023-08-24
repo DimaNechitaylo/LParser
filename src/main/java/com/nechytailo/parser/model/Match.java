@@ -9,6 +9,6 @@ import java.util.List;
 public class Match {
     private Long id;
     private String name;
-    private Date startDate = new Date(1693260000000L);
+    private Date startDate;
     private List<Market> markets;
 }

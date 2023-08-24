@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0e02d35-fd74-4059-82bc-b556eb5c2d3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LeonParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/LeonParseApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/ApiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/ApiServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/JsoupConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/config/JsoupConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exceptions/InvalidJsonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/exceptions/InvalidJsonException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Outcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Outcome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Regions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Region.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Sport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Sport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/parser/LeonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/parser/LeonParserImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/ConsoleOutputFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/util/ConsoleOutputFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/api/ApiServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/config/JsoupConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/config/JsoupConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/parser/LeonParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nechytailo/parser/parser/LeonParserImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

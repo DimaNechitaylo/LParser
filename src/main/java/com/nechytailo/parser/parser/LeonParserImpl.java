@@ -3,6 +3,8 @@ package com.nechytailo.parser.parser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 import com.nechytailo.parser.api.ApiService;
 import com.nechytailo.parser.exceptions.InvalidJsonException;
 import com.nechytailo.parser.model.League;
@@ -10,9 +12,7 @@ import com.nechytailo.parser.model.Match;
 import com.nechytailo.parser.model.Sport;
 
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -59,7 +59,7 @@ public class LeonParserImpl implements LeonParser {
         try {
             Match firstMatch = findFirstMatchInLeague(league.getId());
             Match fullFirstMatch = findMatchWithMarkets(firstMatch);
-
+            findMatchData(fullFirstMatch);
             league.setMatches(Collections.singletonList(fullFirstMatch));
         } catch (JsonSyntaxException e){
             System.err.println("Invalid JSON: " + e.getMessage());
@@ -107,6 +107,18 @@ public class LeonParserImpl implements LeonParser {
     private Match findMatchWithMarkets(Match match) throws JsonSyntaxException{
         String jsonResponse = apiService.receiveMatchWithMarketsJson(match.getId());
         return gson.fromJson(jsonResponse, Match.class);
+    }
+
+    private Match findMatchData(Match match) throws JsonSyntaxException{
+        String jsonResponse = apiService.receiveMatchDateJson(match.getId());
+        DocumentContext context = JsonPath.parse(jsonResponse);
+        try{
+            Long matchDate = context.read("$['12d482ee-cc8d-48ba-824d-c1a33da24019'].data.queries.betLine.getMatchStatisticsEvent.data.matchDate", Long.class);
+            match.setStartDate(new Date(matchDate));
+        } catch (Exception e){
+            match.setStartDate(new Date());
+        }
+        return match;
     }
 
 }

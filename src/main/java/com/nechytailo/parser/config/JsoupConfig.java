@@ -50,11 +50,20 @@ public class JsoupConfig {
         return properties;
     }
 
-    public Connection connect(String url) {
-        return Jsoup.connect(url)
-                .header("authority", "leonbets.com")
+    public Connection getConnect(String url) {
+        Connection connection = Jsoup.connect(url).proxy(proxy);
+        return setGetRequestHeaders(connection);
+    }
+
+    public Connection postConnect(String url) {
+        Connection connection = Jsoup.connect(url).proxy(proxy);
+        return setPostRequestHeaders(connection);
+    }
+
+    private Connection setGetRequestHeaders(Connection connection) {
+        return connection.header("authority", "leonbets.com")
                 .header("accept", "*/*")
-                .header("accept-language", "ru,ru-RU;q=0.9")
+                .header("accept-language", "en,en_US;q=0.9")
                 .cookie("ABTestSeed", "88")
                 .cookie("ipfrom", "149.28.228.65")
                 .cookie("_ga", "GA1.1.1118425112.1692298070")
@@ -70,7 +79,7 @@ public class JsoupConfig {
                 .cookie("x-app-language", "en_US")
                 .cookie("qtag_rfrr", "null-null")
                 .cookie("_ym_isad", "1")
-                .cookie("_ga_JZZNGY93CC", "GS1.1.1692817147.7.1.1692817162.0.0.0")
+                .cookie("_ga_JZZNGY93CC", "GS1.1.1118399415.15.1.16274280119.0.0.0")
                 .header("referer", "https://leonbets.com/bets")
                 .header("sec-ch-ua", "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"")
                 .header("sec-ch-ua-mobile", "?0")
@@ -92,7 +101,52 @@ public class JsoupConfig {
                 .header("x-app-version", "6.69.2")
                 .header("x-requested-uri", "/bets")
                 .method(org.jsoup.Connection.Method.GET)
-                .ignoreContentType(true)
-                .proxy(proxy);
+                .ignoreContentType(true);
+    }
+
+    private Connection setPostRequestHeaders(Connection connection) {
+        return connection.header("authority", "leonbets.com")
+                .header("accept", "*/*")
+                .header("accept-language", "ru,ru-RU;q=0.9")
+                .header("content-type", "application/json")
+                .cookie("ABTestSeed", "88")
+                .cookie("ipfrom", "149.28.228.65")
+                .cookie("_ga", "GA1.1.1118425112.1692298070")
+                .cookie("_gcl_au", "1.1.1173518584.1692298071")
+                .cookie("_ym_uid", "1692296273203283691")
+                .cookie("_ym_d", "1692298073")
+                .cookie("referer", "https://leonbets.com/ru-ru/")
+                .cookie("theme", "DARK")
+                .cookie("firstTheme", "DARK")
+                .cookie("x-app-language", "en_US")
+                .cookie("qtag_rfrr", "null-null")
+                .cookie("dis-request-id", "c405bc7a29570ed40f9d956271ff67b4")
+                .cookie("dis-timestamp", "2023-08-24T08:28:49-07:00")
+                .cookie("dis-remote-addr", "3.126.46.243")
+                .cookie("_ym_isad", "1")
+                .cookie("_ga_JZZNGY93CC", "GS1.1.1118399415.15.1.16274280119.0.0.0")
+                .header("origin", "https://leonbets.com")
+                .header("referer", "https://leonbets.com/bets")
+                .header("sec-ch-ua", "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"")
+                .header("sec-ch-ua-mobile", "?0")
+                .header("sec-ch-ua-platform", "\"Windows\"")
+                .header("sec-fetch-dest", "empty")
+                .header("sec-fetch-mode", "cors")
+                .header("sec-fetch-site", "same-origin")
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36")
+                .header("x-app-browser", "chrome")
+                .header("x-app-env", "prod")
+                .header("x-app-language", "en_US")
+                .header("x-app-layout", "desktop")
+                .header("x-app-modernity", "2019")
+                .header("x-app-os", "windows")
+                .header("x-app-platform", "web")
+                .header("x-app-rendering", "csr")
+                .header("x-app-skin", "default")
+                .header("x-app-theme", "DARK")
+                .header("x-app-version", "6.69.2")
+                .header("x-requested-uri", "/bets")
+                .method(org.jsoup.Connection.Method.POST)
+                .ignoreContentType(true);
     }
 }

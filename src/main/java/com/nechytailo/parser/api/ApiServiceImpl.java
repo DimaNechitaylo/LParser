@@ -4,28 +4,37 @@ import org.jsoup.Connection;
 
 import java.io.IOException;
 
-public class ApiServiceImpl implements ApiService{
+public class ApiServiceImpl implements ApiService {
 
     private final ApiManager apiManager;
 
     public ApiServiceImpl() {
         apiManager = new ApiManager();
     }
-    public String receiveSportsJson(){
+
+    @Override
+    public String receiveSportsJson() {
         Connection sportsConnection = apiManager.getSportsConnection();
         return executeRequestAndExtractJson(sportsConnection);
     }
 
-    public String receiveMatchesJson(Long leagueId){
+    @Override
+    public String receiveMatchesJson(Long leagueId) {
         Connection matchesConnection = apiManager.getMatchesConnection(leagueId);
         return executeRequestAndExtractJson(matchesConnection);
     }
 
-    public String receiveMatchWithMarketsJson(Long matchId){
+    @Override
+    public String receiveMatchWithMarketsJson(Long matchId) {
         Connection marketsConnection = apiManager.getMarketsConnection(matchId);
         return executeRequestAndExtractJson(marketsConnection);
     }
 
+    @Override
+    public String receiveMatchDateJson(Long matchId) {
+        Connection matchDateConnection = apiManager.getMatchDateConnection(matchId);
+        return executeRequestAndExtractJson(matchDateConnection);
+    }
 
     private String executeRequestAndExtractJson(Connection connection) {
         String json;
