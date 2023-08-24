@@ -1,16 +1,17 @@
 package org.example;
 
-import org.example.config.JsoupConfig;
-import org.example.parser.LeonParser;
+import org.example.model.League;
 import org.example.parser.LeonParserImpl;
+import org.example.util.ConsoleOutputFormatter;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import java.util.List;
+
 
 public class LeonParseApplication {
     public static void main(String[] args) {
         LeonParserImpl leonParser = new LeonParserImpl();
-        leonParser.parse();
+        List<League> leagues = leonParser.parse();
+        leagues.forEach(league -> ConsoleOutputFormatter.printSportDetails(league));
+
     }
 }

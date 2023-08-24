@@ -2,13 +2,14 @@ package org.example.model;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class Match {
     private Long id;
     private String name;
-//    private String startDate;
-//    private League league;
+    private Date startDate = new Date(1212121212121L);
     private List<Market> markets;
 }

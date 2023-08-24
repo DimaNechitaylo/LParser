@@ -14,7 +14,7 @@ public class JsoupConfig {
     private static final String CONFIG_FILE = "config.properties";
     private static final String PROXY_HOST_KEY = "proxy.host";
     private static final String PROXY_PORT_KEY = "proxy.port";
-    private static JsoupConfig instance;
+    private static volatile JsoupConfig instance;
 
     private Proxy proxy;
 
@@ -25,9 +25,13 @@ public class JsoupConfig {
         proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
     }
 
-    public static JsoupConfig getInstance() { //TODO make synchronized
+    public static JsoupConfig getInstance() {
         if (instance == null) {
-            instance = new JsoupConfig();
+            synchronized (JsoupConfig.class) {
+                if (instance == null) {
+                    instance = new JsoupConfig();
+                }
+            }
         }
         return instance;
     }

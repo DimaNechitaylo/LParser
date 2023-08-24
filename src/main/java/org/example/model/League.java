@@ -9,7 +9,15 @@ import java.util.List;
 public class League {
     private Long id;
     private String name;
+    @SerializedName("sport.name")
+    private String sportName;
     private boolean top;
     @SerializedName("events")
     private List<Match> matches;
+
+    public Match getFirstMatch() {
+        return matches != null || !matches.isEmpty()
+                ? matches.get(0)
+                : null;
+    }
 }
