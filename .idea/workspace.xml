@@ -6,13 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f0e02d35-fd74-4059-82bc-b556eb5c2d3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LeonParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LeonParseApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/ApiServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/JsoupConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/JsoupConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exceptions/InvalidJsonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/exceptions/InvalidJsonException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/League.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/LeonParserImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/ConsoleOutputFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/ConsoleOutputFormatter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,13 +116,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/LeonParserImpl.java</url>
-          <line>39</line>
+          <line>40</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/LeonParserImpl.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

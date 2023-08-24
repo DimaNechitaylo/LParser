@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LeonParserImpl implements LeonParser {
 
@@ -46,7 +47,6 @@ public class LeonParserImpl implements LeonParser {
                 .collect(Collectors.toList());
 
         CompletableFuture<Void> allOf = CompletableFuture.allOf(tasks.toArray(new CompletableFuture[0]));
-
         try {
             allOf.get();
         } catch (InterruptedException | ExecutionException e) {
@@ -57,21 +57,22 @@ public class LeonParserImpl implements LeonParser {
         return topLeagues;
     }
 
-    private void processLeague(League league) {
-        Match firstMatch = findFirstMatchInLeague(league.getId());
-        Match fullFirstMatch = findMatchWithMarkets(firstMatch);
+    private void processLeague(League league){
+        try {
+            Match firstMatch = findFirstMatchInLeague(league.getId());
+            Match fullFirstMatch = findMatchWithMarkets(firstMatch);
 
-        league.setMatches(Collections.singletonList(fullFirstMatch));
+            league.setMatches(Collections.singletonList(fullFirstMatch));
+        } catch (JsonSyntaxException e){
+            System.err.println("Invalid JSON: " + e.getMessage());
+        }
     }
 
 
-    private List<Sport> findSports() {
+    private List<Sport> findSports() throws JsonSyntaxException{
         String jsonResponse = apiService.receiveSportsJson();
         Type sportListType = new TypeToken<List<Sport>>() {}.getType();
 
-        if (isInvalidJson(jsonResponse, sportListType)) {
-            throw new InvalidJsonException("Invalid JSON received for sport list");
-        }
         List<Sport> allSports = gson.fromJson(jsonResponse, sportListType);
         return allSports.stream()
                 .filter(sport -> Arrays.asList(SPORTS).contains(sport.getName()))
@@ -80,19 +81,22 @@ public class LeonParserImpl implements LeonParser {
 
     private List<League> findTopLeagues(List<Sport> sports) {
         return sports.stream()
-                .flatMap(sport -> sport.getRegions().stream()
-                        .flatMap(region -> region.getLeagues().stream()
-                                .filter(League::isTop)))
+                .flatMap(this::findTopLeaguesForSport)
                 .collect(Collectors.toList());
     }
 
-    private Match findFirstMatchInLeague(Long leagueId) {
+    private Stream<League> findTopLeaguesForSport(Sport sport) {
+        return sport.getRegions().stream()
+                .flatMap(region -> region.getLeagues().stream()
+                        .filter(League::isTop)
+                        .peek(league -> {
+                            league.setSportName(sport.getName());
+                            league.setRegionName(region.getName());
+                        }));
+    }
+
+    private Match findFirstMatchInLeague(Long leagueId) throws JsonSyntaxException{
         String jsonResponse = apiService.receiveMatchesJson(leagueId);
-
-        if (isInvalidJson(jsonResponse, League.class)) {
-            throw new InvalidJsonException("JSON response is null or empty");
-        }
-
         League fullLeague = gson.fromJson(jsonResponse, League.class);
 
         if (fullLeague == null || fullLeague.getMatches() == null || fullLeague.getMatches().isEmpty()) {
@@ -102,23 +106,9 @@ public class LeonParserImpl implements LeonParser {
         return fullLeague.getMatches().get(0);
     }
 
-    private Match findMatchWithMarkets(Match match) {
+    private Match findMatchWithMarkets(Match match) throws JsonSyntaxException{
         String jsonResponse = apiService.receiveMarketsJson(match.getId());
-
-        if (isInvalidJson(jsonResponse, Match.class)) {
-            throw new InvalidJsonException("Invalid JSON received for markets list");
-        }
-
         return gson.fromJson(jsonResponse, Match.class);
     }
 
-    private boolean isInvalidJson(String json, Type type) {
-        try {
-            gson.fromJson(json, type);
-            return false;
-        } catch (JsonSyntaxException e) {
-            System.err.println("Invalid JSON: " + e.getMessage());
-            return true;
-        }
-    }
 }

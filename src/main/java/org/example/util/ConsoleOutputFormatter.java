@@ -6,6 +6,7 @@ import org.example.model.Match;
 import org.example.model.Outcome;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.TimeZone;
 
 public class ConsoleOutputFormatter {
@@ -17,15 +18,30 @@ public class ConsoleOutputFormatter {
     }
 
     public static void printSportDetails(League league) {
-        Match match = league.getFirstMatch();
-        System.out.println(league.getSportName() + ", " + league.getName());
-        System.out.println("    " + league.getFirstMatch().getName() + ", " + dateFormat.format(match.getStartDate()) + ", " + match.getId());
+        printLeagueDetails(league);
+        printMatchDetails(league.getFirstMatch());
+    }
 
-        for (Market market : match.getMarkets()) {
+    private static void printLeagueDetails(League league) {
+        System.out.println(league.getSportName() + ", " + league.getRegionName() + " - " + league.getName());
+    }
+
+    private static void printMatchDetails(Match match) {
+        System.out.println("    " + match.getName() + ", " + dateFormat.format(match.getStartDate()) + ", " + match.getId());
+        printMarketDetails(match.getMarkets());
+    }
+
+    private static void printMarketDetails(List<Market> markets) {
+        for (Market market : markets) {
             System.out.println("       " + market.getName());
-            for (Outcome outcome : market.getOutcomes()) {
-                System.out.println("         " + outcome.getName() + ", " + outcome.getCoefficient() + ", " + outcome.getId());
-            }
+            printOutcomeDetails(market.getOutcomes());
         }
     }
+
+    private static void printOutcomeDetails(List<Outcome> outcomes) {
+        for (Outcome outcome : outcomes) {
+            System.out.println("         " + outcome.getName() + ", " + outcome.getCoefficient() + ", " + outcome.getId());
+        }
+    }
+
 }
