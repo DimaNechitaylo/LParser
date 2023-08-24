@@ -1,4 +1,4 @@
-package org.example.config;
+package com.nechytailo.parser.config;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -16,7 +16,7 @@ public class JsoupConfig {
     private static final String PROXY_PORT_KEY = "proxy.port";
     private static volatile JsoupConfig instance;
 
-    private Proxy proxy;
+    private final Proxy proxy;
 
     private JsoupConfig() {
         Properties properties = loadProperties();

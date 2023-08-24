@@ -1,12 +1,12 @@
-package org.example.model;
+package com.nechytailo.parser.model;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class Regions {
+public class Sport {
     private Long id;
     private String name;
-    private List<League> leagues;
+    private List<Region> regions;
 }

@@ -1,4 +1,4 @@
-package org.example.api;
+package com.nechytailo.parser.api;
 
 import org.jsoup.Connection;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ApiServiceImpl implements ApiService{
 
-    private ApiManager apiManager;
+    private final ApiManager apiManager;
 
     public ApiServiceImpl() {
         apiManager = new ApiManager();
@@ -21,7 +21,7 @@ public class ApiServiceImpl implements ApiService{
         return executeRequestAndExtractJson(matchesConnection);
     }
 
-    public String receiveMarketsJson(Long matchId){
+    public String receiveMatchWithMarketsJson(Long matchId){
         Connection marketsConnection = apiManager.getMarketsConnection(matchId);
         return executeRequestAndExtractJson(marketsConnection);
     }

@@ -1,4 +1,4 @@
-package org.example.model;
+package com.nechytailo.parser.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;

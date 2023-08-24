@@ -1,14 +1,13 @@
-package org.example.parser;
+package com.nechytailo.parser.parser;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import org.example.api.ApiService;
-import org.example.api.ApiServiceImpl;
-import org.example.exceptions.InvalidJsonException;
-import org.example.model.League;
-import org.example.model.Match;
-import org.example.model.Sport;
+import com.nechytailo.parser.api.ApiService;
+import com.nechytailo.parser.exceptions.InvalidJsonException;
+import com.nechytailo.parser.model.League;
+import com.nechytailo.parser.model.Match;
+import com.nechytailo.parser.model.Sport;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -18,7 +17,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LeonParserImpl implements LeonParser {
@@ -30,9 +28,9 @@ public class LeonParserImpl implements LeonParser {
     private final ApiService apiService;
     private final Gson gson;
 
-    public LeonParserImpl() {
-        gson = new Gson();
-        apiService = new ApiServiceImpl();
+    public LeonParserImpl(Gson gson, ApiService apiService) {
+        this.gson = gson;
+        this.apiService = apiService;
     }
 
     @Override
@@ -44,7 +42,7 @@ public class LeonParserImpl implements LeonParser {
 
         List<CompletableFuture<Void>> tasks = topLeagues.stream()
                 .map(league -> CompletableFuture.runAsync(() -> processLeague(league), executor))
-                .collect(Collectors.toList());
+                .toList();
 
         CompletableFuture<Void> allOf = CompletableFuture.allOf(tasks.toArray(new CompletableFuture[0]));
         try {
@@ -76,13 +74,13 @@ public class LeonParserImpl implements LeonParser {
         List<Sport> allSports = gson.fromJson(jsonResponse, sportListType);
         return allSports.stream()
                 .filter(sport -> Arrays.asList(SPORTS).contains(sport.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<League> findTopLeagues(List<Sport> sports) {
         return sports.stream()
                 .flatMap(this::findTopLeaguesForSport)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private Stream<League> findTopLeaguesForSport(Sport sport) {
@@ -107,7 +105,7 @@ public class LeonParserImpl implements LeonParser {
     }
 
     private Match findMatchWithMarkets(Match match) throws JsonSyntaxException{
-        String jsonResponse = apiService.receiveMarketsJson(match.getId());
+        String jsonResponse = apiService.receiveMatchWithMarketsJson(match.getId());
         return gson.fromJson(jsonResponse, Match.class);
     }
 

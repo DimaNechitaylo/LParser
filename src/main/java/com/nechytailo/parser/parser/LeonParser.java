@@ -1,6 +1,6 @@
-package org.example.parser;
+package com.nechytailo.parser.parser;
 
-import org.example.model.League;
+import com.nechytailo.parser.model.League;
 
 import java.util.List;
 

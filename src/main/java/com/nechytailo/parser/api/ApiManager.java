@@ -1,15 +1,14 @@
-package org.example.api;
+package com.nechytailo.parser.api;
 
-import org.example.config.JsoupConfig;
+import com.nechytailo.parser.config.JsoupConfig;
 import org.jsoup.Connection;
 
 public class ApiManager {
-    private static final String BASE_URL = "https://leonbets.com/api-2/betline/events/all";
     private static final String SPORTS_URL = "https://leonbets.com/api-2/betline/sports?ctag=en-US&flags=urlv2";
     private static final String MATCHES_URL = "https://leonbets.com/api-2/betline/events/all?ctag=en-US&league_id=";
     private static final String MARKETS_URL = "https://leonbets.com/api-2/betline/event/all?ctag=en-US&eventId=";
 
-    private JsoupConfig jsoupConfig;
+    private final JsoupConfig jsoupConfig;
 
     public ApiManager() {
         jsoupConfig = JsoupConfig.getInstance();

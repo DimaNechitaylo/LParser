@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package com.nechytailo.parser.exceptions;
 
 public class InvalidJsonException extends RuntimeException {
 

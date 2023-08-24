@@ -1,9 +1,9 @@
-package org.example.util;
+package com.nechytailo.parser.util;
 
-import org.example.model.League;
-import org.example.model.Market;
-import org.example.model.Match;
-import org.example.model.Outcome;
+import com.nechytailo.parser.model.League;
+import com.nechytailo.parser.model.Market;
+import com.nechytailo.parser.model.Match;
+import com.nechytailo.parser.model.Outcome;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -23,7 +23,7 @@ public class ConsoleOutputFormatter {
     }
 
     private static void printLeagueDetails(League league) {
-        System.out.println(league.getSportName() + ", " + league.getRegionName() + " - " + league.getName());
+        System.out.println(league.getSportName() + ", " + league.getRegionName() + " " + league.getName());
     }
 
     private static void printMatchDetails(Match match) {

@@ -1,4 +1,4 @@
-package org.example.model;
+package com.nechytailo.parser.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -18,6 +18,6 @@ public class League {
     public Match getFirstMatch() {
         return matches != null && !matches.isEmpty()
                 ? matches.get(0)
-                : null;
+                : new Match();
     }
 }
